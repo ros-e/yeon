@@ -12,7 +12,6 @@
 
 ### Requirements
 - Python 3.11 (PyTorch)
-- Golang 1.23.2 (API)
 - A Computer
 
 ## Contributing
