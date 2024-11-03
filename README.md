@@ -1,15 +1,23 @@
 # Narcissist
 
-An AI model I'm developing to learn machine learning lol
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
+![JSON](https://img.shields.io/badge/JSON-black.svg?style=for-the-badge&logo=JSON&logoColor=white)
+
+**An AI model I'm developing to learn machine learning**
 
 ## Installation
-### MacOS
-[Download]()
 
-## Requirements
+### MacOS
+[Download](link-to-download)
+
+### Requirements
+- Python 3.11 (PyTorch)
+- Golang 1.23.2 (API)
+- A Computer
 
 ## Contributing
-Todo: Fill this in later.
-## License
+*Todo: **Fill this in later.***
 
+## License
 [MIT](https://choosealicense.com/licenses/mit/)
