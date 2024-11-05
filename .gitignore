@@ -1,7 +1,13 @@
 # Byte-compiled / optimized / DLL files
+.DS_STORE
 __pycache__/
 *.py[cod]
 *$py.class
+
+#delete checkpoints
+src/checkpoints
+src/data
+src/logs
 
 # C extensions
 *.so
