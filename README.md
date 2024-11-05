@@ -7,9 +7,6 @@
 
 ## Installation
 
-### MacOS
-[Download](link-to-download)
-
 ### Requirements
 - Python 3.11 (PyTorch)
 - A Computer
