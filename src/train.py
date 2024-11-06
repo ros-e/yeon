@@ -32,7 +32,7 @@ def download_data(config):
     # Download the tiny Shakespeare dataset if not present
     input_file_path = os.path.join(config.data_dir, 'input.txt')
     if not os.path.exists(input_file_path):
-        data_url = 'https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt' #replace this with a playboi carti dataset later
+        data_url = 'https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt' # Replace this with a playboi carti dataset later
         with open(input_file_path, 'w', encoding='utf-8') as f:
             f.write(requests.get(data_url).text)
     return input_file_path

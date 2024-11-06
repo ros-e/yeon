@@ -1,9 +1,7 @@
 from dataclasses import dataclass
 import torch 
-import numpy as mpy
-
-def load_pretrained():
-    pass
+import torch.nn
+import numpy as npy
 
 @dataclass
 class LLMConfig:
@@ -12,9 +10,8 @@ class LLMConfig:
     n_ctx: int = 1024 
     # 124M params
     n_embd: int = 768
-    n_head: int = 12
+    n_head: int = 1
     n_layer: int = 12
 
-class Model(torch.nn):
-    def __init__(self, config):
-        super().__init__()
+def generate(self, temperature=1.0, top_k=None):
+    pass
