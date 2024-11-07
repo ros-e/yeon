@@ -1,12 +1,10 @@
 import os
 import requests
-import tiktoken
 import numpy as np
 import torch
-import sys
 from pathlib import Path
 from torch.utils.data import DataLoader, Dataset
-import time
+from tqdm import tqdm
 
 class Config:
     def __init__(self):
@@ -54,20 +52,43 @@ def load_data(file_path):
 def train(config):
     input_file_path = download_data(config)
     train_ids, val_ids = load_data(input_file_path)
-    model = torch.nn.Linear(10, 1)
+    train_data = torch.tensor(train_ids, dtype=torch.long)
+    inputs = train_data[:-1]
+    targets = train_data[1:]
+    vocab_size = 256
+    hidden_size = 128
+    model = torch.nn.Sequential(
+        torch.nn.Embedding(vocab_size, hidden_size),
+        torch.nn.Linear(hidden_size, vocab_size)
+    )
+    
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-    for epoch in range(10):
-        for inputs, targets in DataLoader([(torch.rand(10), torch.rand(1)) for _ in range(100)], 
-           batch_size=config.bench_size, shuffle=True):
-            optimizer.zero_grad()
-            outputs = model(inputs)
-            loss = torch.nn.MSELoss()(outputs, targets)
-            loss.backward()
-            optimizer.step()
-            print(f"Epoch [{epoch+1}/10], Loss: {loss.item():.4f}")
-            checkpoint_path = str(Path(config.checkpoint_dir) / f'checkpoint_epoch_{epoch + 1}.pth')
-            torch.save(model.state_dict(), checkpoint_path)
-            print(f"Checkpoint saved: {checkpoint_path}")
+    criterion = torch.nn.CrossEntropyLoss()
+    batch_size = config.bench_size
+    num_batches = (len(inputs) - batch_size) // batch_size
+    for i in tqdm(range(0, len(inputs) - batch_size, batch_size), total=num_batches, desc="Training"):
+        batch_inputs = inputs[i:i + batch_size]
+        batch_targets = targets[i:i + batch_size]
+        optimizer.zero_grad()
+        outputs = model(batch_inputs)
+        loss = criterion(outputs, batch_targets)
+        loss.backward()
+        optimizer.step()
+        if i % 1000 == 0:
+            start_char = 'T'
+            generated = start_char
+            input_char = torch.tensor([ord(start_char)], dtype=torch.long)
+            for _ in range(100):
+                with torch.no_grad():
+                    output = model(input_char)
+                    prob = torch.nn.functional.softmax(output[0], dim=0)
+                    next_char_idx = torch.multinomial(prob, 1).item()
+                    next_char = chr(next_char_idx)
+                    generated += next_char
+                    input_char = torch.tensor([next_char_idx], dtype=torch.long)
+    checkpoint_path = str(Path(config.checkpoint_dir) / 'shakespeare_model.pth')
+    torch.save(model.state_dict(), checkpoint_path)
+    print(f"Model saved: {checkpoint_path}")
 
 if __name__ == "__main__":
     conf = Config()
