@@ -12,6 +12,15 @@ class LLMConfig:
     n_embd: int = 768
     n_head: int = 1
     n_layer: int = 12
+class TransformerBlock(torch.nn.Module): 
+    def __init__(self, config: LLMConfig):
+        super().__init__()
+        
+
+def foward(self, x):
+    # Where all the "magic" happens
+       pass
+
 def init(self, config: LLMConfig):
     super().init()
     self.config = config
