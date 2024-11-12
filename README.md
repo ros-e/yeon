@@ -8,13 +8,16 @@
 </p>
 
 ## Installation
-
-### Requirements
+```sh
+  git clone https://github.com/sn-owy/yeon.git
+  cd yeon
+  pip3.11 install -r requirements.txt 
+```
+## Requirements
 - Python 3.11 (PyTorch)
 - A Computer
 
 ## Contributing
-*Todo: **Fill this in later.***
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

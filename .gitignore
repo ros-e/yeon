@@ -4,11 +4,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 .vscode
-#delete checkpoints
-src/checkpoints
-src/data
-src/logs
-
+checkpoints/
+data/
+logs/
 # C extensions
 *.so
 

@@ -1,4 +1,5 @@
 import torch
+import argparse
 class Config:
  def __init__(self):
     self.device = 'cpu'  # 'cuda' 'cpu' 
