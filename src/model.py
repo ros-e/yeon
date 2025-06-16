@@ -9,12 +9,12 @@ class ModelArgs:
     max_batch_size
     vocab_size
     device | cpu, cuda
+    hidden_size
     """
     max_batch_size: int = 32
     vocab_size: int = 0
-    device: str = 'cpu'
-
-class RNN():
+    device: str = 'cuda'
+    hidden_size: int = 512
 
 
 class Model(nn.Module):
@@ -22,7 +22,7 @@ class Model(nn.Module):
         super().__init__()
         self.args = modelargs
 
-    def foward(self, x: torch.Tensor) -> torch.Tensor:
+    def foward(self, x, ):
         
         pass
 

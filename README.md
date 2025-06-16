@@ -10,7 +10,7 @@
 ```sh
   git clone https://github.com/sn-owy/yeon.git
   cd yeon
-  pip3.11 install -r requirements.txt 
+  pip3.13 install -r requirements.txt 
 ```
 ## Requirements
 - Python 3.13
