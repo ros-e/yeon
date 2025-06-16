@@ -13,7 +13,7 @@
   pip3.11 install -r requirements.txt 
 ```
 ## Requirements
-- Python 3.11 (PyTorch)
+- Python 3.13
 - A Computer
 
 ## Stargazers over time
