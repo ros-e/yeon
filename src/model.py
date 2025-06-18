@@ -1,28 +1,36 @@
 from dataclasses import dataclass
 import torch
 import torch.nn as nn
-import numpy as num
 
 @dataclass
 class ModelArgs:
     """
-    max_batch_size
-    vocab_size
-    device | cpu, cuda
-    hidden_size
+    input_size: int
+    hidden_size: int
+    output_size: int
     """
-    max_batch_size: int = 32
-    vocab_size: int = 0
-    device: str = 'cuda'
-    hidden_size: int = 512
+    input_size: int = 64
+    hidden_size: int = 128
+    output_size: int = 1000
+
 
 
 class Model(nn.Module):
     def __init__(self, modelargs: ModelArgs):
         super().__init__()
-        self.args = modelargs
-
-    def foward(self, x, ):
-        
-        pass
+        self.hidden_size = modelargs.hidden_size
+        self.rnn = nn.RNN(
+            input_size=modelargs.input_size,
+            hidden_size=self.hidden_size,
+            num_layers=2,
+            batch_first=True,
+            bidirectional=True
+        )
+        self.linear = nn.Linear(self.hidden_size * 2, modelargs.output_size)
+    def forward(self, x):
+        batch_size = x.size(0)
+        h0 = torch.zeros(2 * 2, batch_size, self.hidden_size).to(x.device)
+        out, _ = self.rnn(x, h0)
+        out = out[:, -1, :]
+        return self.linear(out)
 
