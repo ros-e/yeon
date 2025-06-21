@@ -13,8 +13,6 @@ class ModelArgs:
     hidden_size: int = 128
     output_size: int = 1000
 
-
-
 class Model(nn.Module):
     def __init__(self, modelargs: ModelArgs):
         super().__init__()

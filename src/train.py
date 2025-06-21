@@ -13,10 +13,8 @@ class CharDataset:
         self.vocab_size = len(self.chars)
         self.seq_length = seq_length
         self.text = text
-
     def __len__(self):
         return len(self.text) - self.seq_length
-
     def __getitem__(self, idx):
         chunk = self.text[idx:idx + self.seq_length + 1]
         input_seq = [self.char_to_idx[ch] for ch in chunk[:-1]]
