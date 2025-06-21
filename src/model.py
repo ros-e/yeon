@@ -33,4 +33,3 @@ class Model(nn.Module):
         out, _ = self.rnn(x, h0)
         out = out[:, -1, :]
         return self.linear(out)
-

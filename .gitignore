@@ -5,6 +5,7 @@ __pycache__/
 *$py.class
 .vscode
 checkpoints/
+shakespeare.txt
 data/
 logs/
 # C extensions
